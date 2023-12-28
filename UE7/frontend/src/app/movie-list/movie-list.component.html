@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>title</th>
+    <th>genre</th>
+    <th>release date</th>
+    <th>duration</th>
+  </tr>
+  <tr *ngFor="let movie of movies">
+    <td>{{movie.movie_title}}</td>
+    <td>
+      <span *ngFor="let genre of movie.genres">
+        <p>{{genre.name}}</p>
+      </span>
+    </td>
+    <td>{{movie.released | date:'dd.MM.yyyy'}}</td>
+    <td>{{movie.runtime}}</td>
+    <a [routerLink]="'/movie-form/' + movie.pk">Edit</a>
+    <button type="button" (click)="deleteMovie(movie)">Delete </button>
+  </tr>
+</table>

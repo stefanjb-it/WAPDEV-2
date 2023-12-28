@@ -1,0 +1,6 @@
+<input type="text" [formControl]="filterFormControl" placeholder="filter employees">
+<div *ngFor="let student of filteredStudents;let i = index">
+  <img [src]="student.image">
+  <h1>{{i}}: {{student.name | uppercase}}</h1>
+  <p>{{student.studyProgram}}</p>
+</div>

@@ -1,0 +1,27 @@
+<form (ngSubmit)="createMovie()" [formGroup]="movieFormGroup">
+  <label>Title:
+    <input formControlName="movie_title">
+  </label>
+  <br/>
+  <label>Genre:
+    <select formControlName="genres" multiple>
+      <option value="1">Action</option>
+      <option value="2">Horror</option>
+    </select>
+  </label>
+  <br/>
+  <label>Release date:
+    <input formControlName="released" type="date">
+  </label>
+  <br/>
+  <br/>
+  <label>Runtime:
+    <input formControlName="runtime" type="number">
+  </label>
+  <br/>
+  <label>Black & White:
+    <input formControlName="black_and_white" type="checkbox">
+  </label>
+  <br/>
+  <button>Create</button>
+</form>

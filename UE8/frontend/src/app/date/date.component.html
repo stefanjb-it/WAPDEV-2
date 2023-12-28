@@ -1,0 +1,7 @@
+<mat-form-field>
+  <mat-label>{{title}}</mat-label>
+  <input matInput [matDatepicker]="datepicker" [placeholder]="placeholder" [formControl]="date">
+  <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+  <mat-datepicker #datepicker></mat-datepicker>
+  <mat-error *ngIf="this.date.hasError('required')">Is required</mat-error>
+</mat-form-field>

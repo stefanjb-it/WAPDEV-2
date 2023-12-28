@@ -1,0 +1,88 @@
+<table mat-table style="width: 100%" [dataSource]="movies" class="mat-elevation-z8">
+
+  <!-- Title Column -->
+  <ng-container matColumnDef="movie_title">
+    <th mat-header-cell *matHeaderCellDef Title="some thing"></th>
+    <td mat-cell *matCellDef="let element"> {{element.movie_title}} </td>
+  </ng-container>
+
+  <!-- Released -->
+  <ng-container matColumnDef="released">
+    <th mat-header-cell *matHeaderCellDef >Released</th>
+    <td mat-cell *matCellDef="let element"> {{element.released | date : 'dd.MM.yyyy'}} </td>
+  </ng-container>
+
+  <!-- Runtime -->
+  <ng-container matColumnDef="runtime">
+    <th mat-header-cell *matHeaderCellDef>Runtime</th>
+    <td mat-cell *matCellDef="let element">
+      {{element.runtime}}
+    </td>
+  </ng-container>
+
+  <!-- Rating -->
+  <ng-container matColumnDef="rating">
+    <th mat-header-cell *matHeaderCellDef>Rating</th>
+    <td mat-cell *matCellDef="let element">
+      <star-rating [starType]="'svg'" [rating]="element.rating" [readOnly]="true"></star-rating>
+    </td>
+  </ng-container>
+
+  <!-- Runtime -->
+  <ng-container matColumnDef="genres">
+    <th mat-header-cell *matHeaderCellDef>Genres</th>
+    <td mat-cell *matCellDef="let element">
+      {{mapToName(element.genres)}}
+    </td>
+  </ng-container>
+
+
+
+  <!-- Edit Column -->
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button color="primary" [routerLink]="'/movie-form/' + element.pk">Edit</button>
+    </td>
+  </ng-container>
+
+  <!-- Delete Column -->
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button color="warn" (click)="deleteMovie(element.pk)">Delete</button>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayed_columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayed_columns;"></tr>
+</table>
+
+
+
+
+<!--<table>
+  <tr>
+    <th>title</th>
+    <th>genre</th>
+    <th>release date</th>
+    <th>duration</th>
+    <th>edit</th>
+    <th>delete</th>
+  </tr>
+
+  <tr *ngFor="let movie of movies">
+    <td>{{movie.movie_title}}</td>
+    <td>
+      <span *ngFor="let genre of movie.genres">
+        <p>{{genre.name}}</p>
+      </span>
+    </td>
+
+    <td>{{movie.released | date:'dd.MM.yyyy'}}</td>
+
+    <td>{{movie.runtime}}</td>
+    <td><a [routerLink]="'/movie-form/' + movie.pk">Edit</a></td>
+    <td><button (click)="deleteMovie(movie.pk)">Delete</button></td>
+  </tr>
+</table>
+<p [textContent]="testText"></p>-->

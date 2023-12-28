@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <button *ngIf="userService.isLoggedIn$ | async" mat-button [matMenuTriggerFor]="movieMenu">Movies</button>
+    <mat-menu #movieMenu="matMenu">
+        <button mat-menu-item routerLink="/movie-list">List</button>
+        <button mat-menu-item routerLink="/movies-create">Create</button>
+        <button mat-menu-item (click)="userService.logout()">Logout</button>
+    </mat-menu>
+</mat-toolbar>
+<router-outlet></router-outlet>

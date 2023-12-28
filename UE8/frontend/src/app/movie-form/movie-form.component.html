@@ -1,0 +1,75 @@
+<form [formGroup]="movieFormGroup" (ngSubmit)="createMovie()" class="movie-form__form">
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput type="text" placeholder="Title" formControlName="movie_title">
+    <mat-error *ngIf="movieFormGroup.controls['movie_title'].hasError('required')">
+      Title is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Genres</mat-label>
+    <mat-select multiple placeholder="Genre" formControlName="genres">
+      <mat-option value="1">Action</mat-option>
+      <mat-option value="2">Horror</mat-option>
+    </mat-select>
+  </mat-form-field>
+    <mat-label>Rating</mat-label>
+    <!--<input hidden matInput type="number" placeholder="1" formControlName="rating" min="1" max="5" step="0.5">-->
+    <!--<app-stars></app-stars>-->
+    <mat-slider min="0" max="5" step="0.5" showTickMarks discrete>
+      <input matSliderThumb formControlName="rating">
+    </mat-slider>
+    <app-date-picker-new placeholder="Release date"
+                         formControlName="released"
+                         [title]="'Release date'"
+                         [required]="true">
+    </app-date-picker-new>
+  <mat-form-field>
+    <mat-label>Country</mat-label>
+    <mat-select placeholder="Country" formControlName="country">
+      <mat-option *ngFor="let country of countryOptions" [value]="country.pk">{{country.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Runtime</mat-label>
+    <input matInput type="number" placeholder="Runtime" formControlName="runtime">
+  </mat-form-field>
+  <mat-checkbox formControlName="black_and_white">Black and white</mat-checkbox>
+  <br/>
+  <mat-card-actions align="start">
+    <button mat-raised-button color="primary" [disabled]="!movieFormGroup.valid">
+      <span *ngIf="!movieFormGroup.controls['pk'].value">Create</span>
+      <span *ngIf="movieFormGroup.controls['pk'].value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>
+
+
+<!--<form [formGroup]="movieFormGroup" (ngSubmit)="createMovie()">
+  <label>Title:
+    <input formControlName="movie_title">
+  </label>
+  <br/>
+  <label>Genre:
+    <select multiple formControlName="genres">
+      <option value="1">Action</option>
+      <option value="2">Horror</option>
+    </select>
+  </label>
+  <br/>
+  <label>Release date:
+    <input type="date" formControlName="released">
+  </label>
+  <br/>
+  <br/>
+  <label>Runtime:
+    <input type="number" formControlName="runtime">
+  </label>
+  <br/>
+  <label>Black & White:
+    <input type="checkbox" formControlName="black_and_white">
+  </label>
+  <br/>
+  <button>Create</button>
+</form>-->
+

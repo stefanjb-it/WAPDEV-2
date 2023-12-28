@@ -1,0 +1,18 @@
+<input type="text" [formControl]="filterFormControl" placeholder="filter employees">
+<br/>
+<select [formControl]="selectFormControl" name="selector" id="selector">
+  <option [value]=""></option>
+  <option *ngFor="let position of positions" [value]="position">
+    {{position}}
+  </option>
+</select>
+<br/>
+<button (click)="resetForms()">
+  Rollback
+</button>
+<div *ngFor="let employee of filteredEmployees;let i = index">
+  <img [src]="employee.image">
+  <h1>{{i}}: {{employee.name | uppercase}}</h1>
+  <div [innerHTML]="employee.position"></div>
+  <p *ngIf="employee.description">{{employee.description}}</p>
+</div>
